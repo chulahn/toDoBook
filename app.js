@@ -91,7 +91,7 @@ app.get('/alltasks', function(req, res) {
 		}
 		else {
 			console.log("failed to connect to db in tasks");
-			res.redirect('/tasks');
+			res.redirect('/alltasks');
 		}
 	});
 
@@ -219,7 +219,7 @@ function deleteAll(res) {
 
 				if (success) {
 					console.log("deleted all tasks!")
-					res.redirect('/tasks');
+					res.redirect('/alltasks');
 				}
 				else {
 					res.send("couldnt delete all tasks")
