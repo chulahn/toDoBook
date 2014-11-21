@@ -1,0 +1,70 @@
+html, body {
+	height: 100%;
+}
+
+header,footer {
+	position: absolute;
+	height: 4%;
+	width: 100%;
+	background-color: black;
+	left: 0;
+}
+
+header{
+	top:0;
+}
+
+footer{
+	bottom:0;
+}
+
+#contents{
+	margin-top: 5%;
+	height: 80%;
+}
+
+nav {
+	text-align: center;
+	height: 7.5%;
+}
+
+nav ul li {
+	display: inline;
+	list-style: none;
+	padding: 0 5px;
+	font-size: 150%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: blue;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+#deleteAll{
+	color: red;
+}
+
+
+table {
+	margin: 0 auto;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 5px;
+	border-collapse: separate;
+}
+table a {
+	text-decoration: underline;
+}
+th {
+	text-align: center;
+}
+td, th {
+	padding: 1px 5px;
+}

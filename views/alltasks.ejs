@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link href="../styles/tasks.css" rel="stylesheet">
+
+<title>All Tasks</title>
+
+<script>
+
+	function deleteAll() {
+			
+			if (confirm('Are you sure you want to do this?')) {
+				window.location = "/delete/all";
+				return true;
+			}
+			else {
+			}
+
+	}
+
+
+	window.onload = function() {
+		var deleteAllID = document.getElementById('deleteAll');
+		deleteAllID.onclick = function() {
+			deleteAll();
+		}
+	}
+
+</script>
+</head>
+
+<% var imgLeft = "<img src=\"../images/"
+		var imgRight =  "\" height=\"25\" width=\"25\"></img>" %>
+
+
+<body>
+	<header>
+	</header>
+
+
+	<section id="contents">
+		<nav>
+			<ul>
+				<li><a href='/'>Home</a></li>
+				<li><a href='/add'>Add Task</a></li>
+				<li><a id="deleteAll" href='#'>Delete all tasks</a></li>
+		</nav><br/>
+
+		<table>
+			<tr>
+				<th>Task Name</th>
+				<th>Due Date</th>
+				<th>Last Updated</th>
+				<th>Completed</th>
+			</tr>
+			<% ejs_allTasks.forEach(function (task) { %>
+				<tr>
+					<% var dueDate = task.due;
+						var dueDate = dueDate.slice(5,7) + "/" + dueDate.slice(8,12) + "/" + dueDate.slice(0,4);
+					%>
+					<% var lastUpdated = task.lastUpdated;
+						lastUpdated = (lastUpdated.getMonth()+1) + "/" + lastUpdated.getDate() + "/" + (lastUpdated.getYear()+1900); %>
+					<td><a href="/task/<%= task.id %>"><%= task.name %></a></td>
+					<td><%= dueDate %></td>
+					<td><%= lastUpdated %></td>
+					
+					<td><%- (task.completed === true) ? imgLeft+"complete.jpg"+imgRight : imgLeft+"incomplete.jpg"+imgRight %></td>
+				</tr>
+			<% }) %>
+		</table>
+	</section>
+
+	<footer>
+	</footer>
+
+</body>
+</html>
+

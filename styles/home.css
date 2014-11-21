@@ -1,0 +1,30 @@
+#title {
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 15px;
+	text-align: center;
+	width: 30%;
+	margin: 0px auto;
+	margin-top: 10%;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+a:visited {
+	color: blue;
+}
+
+aside {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 2.5%;
+	background-color: black;
+}
+
+body {
+	background-image: url('../images/compositionbg.jpg');
+}

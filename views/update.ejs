@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../styles/task.css">
+<title>Update task <%- ejs_task.name %></title>
+
+<script>
+	window.onload = function () {
+	var nameForm = document.getElementsByName('name')[0];
+	var dueForm = document.getElementsByName('due')[0];
+
+
+	var name = document.getElementsByName('name')[0].value;
+	var due = document.getElementsByName('due')[0].value;
+
+	function func() {
+		console.log(this.value)
+		if (this.value !== "") {
+			this.className = "complete";
+		}
+		else {
+			this.className = "incomplete"
+		}
+	}
+		nameForm.addEventListener("keydown", func);
+		dueForm.addEventListener("keydown", func);
+	}
+
+	function validate() {
+		var name = document.getElementsByName('name')[0].value;
+		var due = document.getElementsByName('due')[0].value;
+
+
+
+		if (name !== "" && due !== "") {
+			return true;
+		}
+
+		else {
+			if (name === "" && due === "") {
+				alert("Add name and due date for a task");
+			}
+			else if (name === "") {
+				alert("Add name of task");
+			}
+			else {
+				alert("Add a due date");
+			}
+			return false;
+		}
+
+	}
+</script>
+</head>
+
+
+<body>
+	<aside id="redCol">
+	</aside>
+
+	<div id="bg">
+	</div>
+
+	<nav>
+		<a href='/'>Home</a>
+		<a href="/alltasks">View all tasks</a>
+		<a href="/add">Add tasks</a>
+	</nav>
+
+	<p>
+	<form action="/update/<%= ejs_task.id %>" method="post" onsubmit="return validate()">
+	<div class="container">
+		<div class="form">
+			<div class="inner titles">
+				<span class="required">Task Name:</span><br/>
+				<span class="required">Due Date:</span><br/>
+				Details: 
+			</div>
+			<div class="inner field">
+				<input name="name" class="complete" type="text" placeholder="name of task" value="<%- ejs_task.name %>" /> </input><br/>
+				<input name="due" class="complete" type="date" placeholder="date due" value="<%- ejs_task.due %>" /> </input><br/>
+				<textarea name="details"><%= ejs_task.details %></textarea>
+			</div>
+		</div>
+	<button name="Add Data" type="submit" >Update task
+	</div>
+	</button>
+</body>
+</html>

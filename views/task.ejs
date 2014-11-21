@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../styles/task.css">
+<title><%= ejs_task.name %></title>
+</head>
+
+
+<body>
+	<aside id="redCol">
+	</aside>
+
+	<div id="bg">
+	</div>
+
+	<% var dueDate = ejs_task.due;
+		var dueDate = dueDate.slice(5,7) + "/" + dueDate.slice(8,12) + "/" + dueDate.slice(0,4);
+	%>
+
+	<% var lastUpdated = ejs_task.lastUpdated;
+		lastUpdated = (lastUpdated.getMonth()+1) + "/" + lastUpdated.getDate() + "/" + (lastUpdated.getYear()-100)
+					+ " " + lastUpdated.getHours() + ":" + lastUpdated.getMinutes(); %>
+	<h1><%= ejs_task.name %></h1>
+	<div id="details">
+		<!-- format due date -->
+		<h2>Due: <%= dueDate %></h2>
+		<h3>Completed: <%= ((ejs_task.completed === true) ? "Yes" : "No") %></h3>
+		Details: <%= (ejs_task.details !== "") ? ejs_task.details : "None" %><br/>
+		Last Updated: <%= lastUpdated %> <br/>
+		<p>
+		<div class="control">
+			<a href="/update/<%= ejs_task.id %>">Update</a> <br/>
+			<a href="/complete/<%= ejs_task.id %>">Complete</a> <br/>
+			<a href="/delete/<%= ejs_task.id %>" class="delete">Delete</a> <br/>
+			<br/>
+			<a href="/alltasks/">View All Tasks</a>
+		</div>
+		<br/>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../styles/task.css">
+<title>Add task <%- ejs_taskID %></title>
+
+<script>
+	window.onload = function () {
+		var nameForm = document.getElementsByName('name')[0];
+		var dueForm = document.getElementsByName('due')[0];
+
+
+		var name = document.getElementsByName('name')[0].value;
+		var due = document.getElementsByName('due')[0].value;
+
+		function func() {
+			console.log(this.value)
+			if (this.value !== "") {
+				this.className = "complete";
+			}
+			else {
+				this.className = "incomplete"
+			}
+		}
+		nameForm.addEventListener("keyup", func);
+		dueForm.addEventListener("keyup", func);
+	}
+
+	function validate() {
+		var name = document.getElementsByName('name')[0].value;
+		var due = document.getElementsByName('due')[0].value;
+
+
+
+		if (name !== "" && due !== "") {
+			return true;
+		}
+
+		else {
+			if (name === "" && due === "") {
+				alert("Add name and due date for a task");
+			}
+			else if (name === "") {
+				alert("Add name of task");
+			}
+			else {
+				alert("Add a due date");
+			}
+			return false;
+		}
+
+	}
+</script>
+
+</head>
+
+
+<body>
+
+	<aside id="redCol">
+	</aside>
+
+	<div id="bg">
+	</div>
+
+	<nav>
+		<a href='/'>Home</a>
+		<a href="/alltasks">View all tasks</a></br/>
+	</nav>
+
+	<p>
+	<form action="/add/<%= ejs_taskID %>" method="post" onsubmit="return validate()">
+	<div class="container">
+		<div class="form">
+			<div class="inner titles">
+				<span class="required">Task Name:</span><br/>
+				<span class="required">Due Date:</span><br/>
+				Details: 
+			</div>
+			
+			<div class="inner field">
+				<input name="name" class="incomplete" type="text" placeholder="name of task" /> </input><br/>
+				<input name="due" class="incomplete" type="date" placeholder="date due" /> </input><br/>
+				<textarea name="details"></textarea>
+			</div>
+		</div>
+		<button name="Add Data" type="submit" >Add data
+	</div>
+
+	</form>
+</body>
+</html>

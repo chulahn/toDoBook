@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../styles/task.css">
+<title>Successfuly <%= action %> task!</title>
+</head>
+
+
+<body>
+	<aside id="redCol">
+	</aside>
+
+	<div id="bg">
+	</div>
+
+	<h1>Success!</h1>
+	<div id="details">
+		<h2><%= (ejs_task && ejs_task.name) || "Task" %> was successfully <%= action %></h2>
+		<% if (action !== "deleted" & action !== "completed") { %>
+		<% var dueDate = ejs_task.due;
+			var dueDate = dueDate.slice(5,7) + "/" + dueDate.slice(8,12) + "/" + dueDate.slice(0,4);
+		%>
+			<h3>Due Date: <%= dueDate %></h3>
+			<h4>Details: <%= (ejs_task.details !== "") ? ejs_task.details : "None" %></h4>
+			<a href="/update/<%= ejs_task.id %>">Update this task</a><br/>
+			<a href="/delete/<%= ejs_task.id %>">Delete this task</a><br/>
+		<% } %>
+
+		<a href="/add">Add Another task</a><br/>
+		<a href="/alltasks">View all tasks</a><br/>
+		<br/>
+	</div>
+</body>
+</html>
